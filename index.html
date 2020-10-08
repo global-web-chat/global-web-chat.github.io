@@ -176,21 +176,14 @@ document.getElementById("menu-profile-btn").addEventListener("click",()=>{
 });
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  var firebaseConfig = {
-    apiKey: "AIzaSyBAVMLfjA5dH_z19_rz4k9g4Gxvp1QMzcM",
-    authDomain: "global-web-chat.firebaseapp.com",
-    databaseURL: "https://global-web-chat.firebaseio.com",
-    projectId: "global-web-chat",
-    storageBucket: "global-web-chat.appspot.com",
-    messagingSenderId: "320560454840",
-    appId: "1:320560454840:web:6c321f96c3004882d5284d",
-    measurementId: "G-55K1GY9TN6"
-  };
+ eval(s(`JTIwdmFyJTIwZmlyZWJhc2VDb25maWclMjA9JTIwJTdCJTBBJTIwJTIwJTIwJTIwYXBpS2V5OiUyMCUyMkFJemFTeUJBVk1MZmpBNWRIX3oxOV9yejRrOWc0R3h2cDFRTXpjTSUyMiwlMEElMjAlMjAlMjAlMjBhdXRoRG9tYWluOiUyMCUyMmdsb2JhbC13ZWItY2hhdC5maXJlYmFzZWFwcC5jb20lMjIsJTBBJTIwJTIwJTIwJTIwZGF0YWJhc2VVUkw6JTIwJTIyaHR0cHM6Ly9nbG9iYWwtd2ViLWNoYXQuZmlyZWJhc2Vpby5jb20lMjIsJTBBJTIwJTIwJTIwJTIwcHJvamVjdElkOiUyMCUyMmdsb2JhbC13ZWItY2hhdCUyMiwlMEElMjAlMjAlMjAlMjBzdG9yYWdlQnVja2V0OiUyMCUyMmdsb2JhbC13ZWItY2hhdC5hcHBzcG90LmNvbSUyMiwlMEElMjAlMjAlMjAlMjBtZXNzYWdpbmdTZW5kZXJJZDolMjAlMjIzMjA1NjA0NTQ4NDAlMjIsJTBBJTIwJTIwJTIwJTIwYXBwSWQ6JTIwJTIyMTozMjA1NjA0NTQ4NDA6d2ViOjZjMzIxZjk2YzMwMDQ4ODJkNTI4NGQlMjIsJTBBJTIwJTIwJTIwJTIwbWVhc3VyZW1lbnRJZDolMjAlMjJHLTU1SzFHWTlUTjYlMjIlMEElMjAlMjAlN0Q7`))
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
   var db=firebase.database();
-
+function s(text){
+  return decodeURI(atob(text));
+}
   function convertHTML(str) {
   let regex = /[&|<|>|"|'|/|\\|(|)|{|}|;|:|$|+|=|-|!|*|%|#|@|?|`]/g;
   let htmlString = str.replace(regex, function(match){
@@ -270,49 +263,7 @@ document.getElementById("menu-profile-btn").addEventListener("click",()=>{
       
   return htmlString;
 }
-  function sendMessage(){
-    var message=document.getElementById("message-input");
-    var messageText= message.value;
-    if (messageText.length > 1024){
-        messageText = messageText.slice(0, 1024)
-    }
-    messageText = convertHTML(messageText);
-    if(!(proUsers.includes(uid)) && !(admins.includes(uid))){
-    if(message.value.length>0){
-   sendDB(messageText,false,false,null);
-   document.getElementById("message-input").value="";
-    }
-    else{
-      alert("Please write a message before sending");
-    }
-
-    }
-    if(proUsers.includes(uid) && !(admins.includes(uid))){
-    if(message.value.length>0){
-   sendDB(messageText,true,false,null);
-   document.getElementById("message-input").value="";
-    }
-    else{
-      alert("Please write a message before sending");
-    }
-
-    }
-    if(proUsers.includes(uid) && admins.includes(uid)){
-    if(message.value.length>0){
-      if(selected.includes(uid)){
-        sendDB(messageText,true,true,"https://arnav5544.github.io/arnav.png");
-      }
-      else{
-   sendDB(messageText,true,true,null);
-      }
-   document.getElementById("message-input").value="";
-    }
-    else{
-      alert("Please write a message before sending");
-    }
-
-    }
-   }
+eval(s(`JTBBJTIwJTIwZnVuY3Rpb24lMjBzZW5kTWVzc2FnZSgpJTdCJTBBJTIwJTIwJTIwJTIwdmFyJTIwbWVzc2FnZT1kb2N1bWVudC5nZXRFbGVtZW50QnlJZCglMjJtZXNzYWdlLWlucHV0JTIyKTslMEElMjAlMjAlMjAlMjB2YXIlMjBtZXNzYWdlVGV4dD0lMjBtZXNzYWdlLnZhbHVlOyUwQSUyMCUyMCUyMCUyMGlmJTIwKG1lc3NhZ2VUZXh0Lmxlbmd0aCUyMCUzRSUyMDEwMjQpJTdCJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwbWVzc2FnZVRleHQlMjA9JTIwbWVzc2FnZVRleHQuc2xpY2UoMCwlMjAxMDI0KSUwQSUyMCUyMCUyMCUyMCU3RCUwQSUyMCUyMCUyMCUyMG1lc3NhZ2VUZXh0JTIwPSUyMGNvbnZlcnRIVE1MKG1lc3NhZ2VUZXh0KTslMEElMjAlMjAlMjAlMjBpZighKHByb1VzZXJzLmluY2x1ZGVzKHVpZCkpJTIwJiYlMjAhKGFkbWlucy5pbmNsdWRlcyh1aWQpKSklN0IlMEElMjAlMjAlMjAlMjBpZihtZXNzYWdlLnZhbHVlLmxlbmd0aCUzRTApJTdCJTBBJTIwJTIwJTIwc2VuZERCKG1lc3NhZ2VUZXh0LGZhbHNlLGZhbHNlLG51bGwpOyUwQSUyMCUyMCUyMGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCUyMm1lc3NhZ2UtaW5wdXQlMjIpLnZhbHVlPSUyMiUyMjslMEElMjAlMjAlMjAlMjAlN0QlMEElMjAlMjAlMjAlMjBlbHNlJTdCJTBBJTIwJTIwJTIwJTIwJTIwJTIwYWxlcnQoJTIyUGxlYXNlJTIwd3JpdGUlMjBhJTIwbWVzc2FnZSUyMGJlZm9yZSUyMHNlbmRpbmclMjIpOyUwQSUyMCUyMCUyMCUyMCU3RCUwQSUwQSUyMCUyMCUyMCUyMCU3RCUwQSUyMCUyMCUyMCUyMGlmKHByb1VzZXJzLmluY2x1ZGVzKHVpZCklMjAmJiUyMCEoYWRtaW5zLmluY2x1ZGVzKHVpZCkpKSU3QiUwQSUyMCUyMCUyMCUyMGlmKG1lc3NhZ2UudmFsdWUubGVuZ3RoJTNFMCklN0IlMEElMjAlMjAlMjBzZW5kREIobWVzc2FnZVRleHQsdHJ1ZSxmYWxzZSxudWxsKTslMEElMjAlMjAlMjBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCglMjJtZXNzYWdlLWlucHV0JTIyKS52YWx1ZT0lMjIlMjI7JTBBJTIwJTIwJTIwJTIwJTdEJTBBJTIwJTIwJTIwJTIwZWxzZSU3QiUwQSUyMCUyMCUyMCUyMCUyMCUyMGFsZXJ0KCUyMlBsZWFzZSUyMHdyaXRlJTIwYSUyMG1lc3NhZ2UlMjBiZWZvcmUlMjBzZW5kaW5nJTIyKTslMEElMjAlMjAlMjAlMjAlN0QlMEElMEElMjAlMjAlMjAlMjAlN0QlMEElMjAlMjAlMjAlMjBpZihwcm9Vc2Vycy5pbmNsdWRlcyh1aWQpJTIwJiYlMjBhZG1pbnMuaW5jbHVkZXModWlkKSklN0IlMEElMjAlMjAlMjAlMjBpZihtZXNzYWdlLnZhbHVlLmxlbmd0aCUzRTApJTdCJTBBJTIwJTIwJTIwJTIwJTIwJTIwaWYoc2VsZWN0ZWQuaW5jbHVkZXModWlkKSklN0IlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBzZW5kREIobWVzc2FnZVRleHQsdHJ1ZSx0cnVlLCUyMmh0dHBzOi8vYXJuYXY1NTQ0LmdpdGh1Yi5pby9hcm5hdi5wbmclMjIpOyUwQSUyMCUyMCUyMCUyMCUyMCUyMCU3RCUwQSUyMCUyMCUyMCUyMCUyMCUyMGVsc2UlN0IlMEElMjAlMjAlMjBzZW5kREIobWVzc2FnZVRleHQsdHJ1ZSx0cnVlLG51bGwpOyUwQSUyMCUyMCUyMCUyMCUyMCUyMCU3RCUwQSUyMCUyMCUyMGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCUyMm1lc3NhZ2UtaW5wdXQlMjIpLnZhbHVlPSUyMiUyMjslMEElMjAlMjAlMjAlMjAlN0QlMEElMjAlMjAlMjAlMjBlbHNlJTdCJTBBJTIwJTIwJTIwJTIwJTIwJTIwYWxlcnQoJTIyUGxlYXNlJTIwd3JpdGUlMjBhJTIwbWVzc2FnZSUyMGJlZm9yZSUyMHNlbmRpbmclMjIpOyUwQSUyMCUyMCUyMCUyMCU3RCUwQSUwQSUyMCUyMCUyMCUyMCU3RCUwQSUyMCUyMCUyMCU3RA==`))
 document.getElementById("send-message").addEventListener("click",()=>{
   sendMessage();
 })
