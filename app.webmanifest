@@ -27,7 +27,7 @@
   "start_url": "https://global-web-chat.github.io/",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#6633ff",
+  "background_color": "#ffffff",
   "orientation":"portrait",
 "scope": "https://global-web-chat.github.io/"
 }
