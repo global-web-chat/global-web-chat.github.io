@@ -388,7 +388,7 @@ document.getElementById("send-message").addEventListener("click",()=>{
           
           displayName = user.displayName;
 		if(user.displayName==null){
-			displayName="anonymous";
+			displayName="Anonymous";
 		}
           email = user.email;
           emailVerified = user.emailVerified;
@@ -442,7 +442,8 @@ document.getElementById("send-message").addEventListener("click",()=>{
             "message":message,
             "pro":isPro,
             "admin":isAdmin,
-            "p_photo":photo
+            "p_photo":photo,
+	    "uid":uid
         })
 }
 //dropdown menu function
