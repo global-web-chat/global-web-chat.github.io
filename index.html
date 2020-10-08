@@ -331,12 +331,8 @@ document.getElementById("send-message").addEventListener("click",()=>{
       signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        {
-        provider:firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-        requireDisplayName:true
-        },
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        
+        firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
         
       ],
       
@@ -391,6 +387,9 @@ document.getElementById("send-message").addEventListener("click",()=>{
           // User is signed in.
           
           displayName = user.displayName;
+		if(user.displayName==null){
+			displayName="anonymous";
+		}
           email = user.email;
           emailVerified = user.emailVerified;
           photoURL = user.photoURL;
