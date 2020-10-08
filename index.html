@@ -331,9 +331,12 @@ document.getElementById("send-message").addEventListener("click",()=>{
       signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+        {
+        provider:firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+        displayName:true
+        },
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID,
+        
         
       ],
       
