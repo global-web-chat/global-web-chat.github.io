@@ -1,0 +1,33 @@
+{
+  "name": "Global Web Chat",
+  "short_name": "Global Web Chat",
+  "description": "A place where People all over the World meet each other. Chat to whole World Anytime Anywhere.",
+  "icons": [
+    {
+      "src": "global-web-chat.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+"shortcuts" : [
+  {
+"short_name":"Chat",
+    "name": "Chat",
+    "url": "https://global-web-chat.github.io/",
+"icons": [
+    {
+      "src": "global-web-chat.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+    "description": "A place where People all over the World meet each other. Chat to whole World Anytime Anywhere."
+  }
+],
+  "start_url": "https://global-web-chat.github.io/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#6633ff",
+  "orientation":"portrait",
+"scope": "https://global-web-chat.github.io/"
+}
