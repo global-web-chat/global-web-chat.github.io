@@ -456,7 +456,7 @@ document.getElementById("send-message").addEventListener("click",()=>{
      
    });
      
-unregisterSw(){
+function unregisterSw(){
 	navigator.serviceWorker.getRegistrations().then(function(registrations) {
  for(let registration of registrations) {
   registration.unregister();
