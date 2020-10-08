@@ -461,7 +461,7 @@ function unregisterSw(){
 	navigator.serviceWorker.getRegistrations().then(function(registrations) {
  for(let registration of registrations) {
   registration.unregister();
-   alert("service workers unregistered")
+   alert("App Sync successful")
 } })
 		window.location.reload();
 	}
