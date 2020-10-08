@@ -181,6 +181,59 @@ document.getElementById("menu-profile-btn").addEventListener("click",()=>{
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
   var db=firebase.database();
+
+
+  //getting messages
+  function adminChecker(bool){
+    if(bool==true){
+      return `<div class="admin-badge"><span class="material-icons">local_police</span>Admin</div>`;
+    }
+    else{
+      return ``;
+    }
+  }
+  function proChecker(bool){
+    if(bool==true){
+      return `<div class="pro-badge"><span class="material-icons">verified_user</span>Pro</div>`;
+    }
+    else return ``;
+  }
+  function avatar(photo){
+    if(photo!=null){
+      return `<img src="${photo}" width="25px" height="25px" style="border-radius:100%;">`;
+    }
+    else{
+      return `<span class="material-icons">person</span>`;
+    }
+  }
+  firebase.database().ref("messages").on("child_added", (snapshot) => {
+    let html = document.querySelector("#messages").innerHTML;
+    
+    document.getElementById("messages").innerHTML = `
+    
+    <li class="li">
+                 <div class="message">
+                   <div class="message-profile">
+                     <div class="message-p-photo">${avatar(snapshot.val().p_photo,)}</div>
+                     <div class="message-username-container">
+                        <h1 class="message-username">${snapshot.val().sender}</h1>
+                     </div>
+                     <div class="user-badges">
+                      ${adminChecker(snapshot.val().admin)}
+                     ${proChecker(snapshot.val().pro)}
+                     </div>
+                   </div>
+                   <hr class="m-hr">
+                   <div class="message-text">
+                     ${snapshot.val().message}
+                   </div>
+                 </div>
+               </li>
+
+    `+html;
+})
+
+
 function s(text){
   return decodeURI(atob(text));
 }
@@ -402,55 +455,6 @@ document.getElementById("send-message").addEventListener("click",()=>{
      
    });
 
-  //getting messages
-  function adminChecker(bool){
-    if(bool==true){
-      return `<div class="admin-badge"><span class="material-icons">local_police</span>Admin</div>`;
-    }
-    else{
-      return ``;
-    }
-  }
-  function proChecker(bool){
-    if(bool==true){
-      return `<div class="pro-badge"><span class="material-icons">verified_user</span>Pro</div>`;
-    }
-    else return ``;
-  }
-  function avatar(photo){
-    if(photo!=null){
-      return `<img src="${photo}" width="25px" height="25px" style="border-radius:100%;">`;
-    }
-    else{
-      return `<span class="material-icons">person</span>`;
-    }
-  }
-  firebase.database().ref("messages").on("child_added", (snapshot) => {
-    let html = document.querySelector("#messages").innerHTML;
-    
-    document.getElementById("messages").innerHTML = `
-    
-    <li class="li">
-                 <div class="message">
-                   <div class="message-profile">
-                     <div class="message-p-photo">${avatar(snapshot.val().p_photo,)}</div>
-                     <div class="message-username-container">
-                        <h1 class="message-username">${snapshot.val().sender}</h1>
-                     </div>
-                     <div class="user-badges">
-                      ${adminChecker(snapshot.val().admin)}
-                     ${proChecker(snapshot.val().pro)}
-                     </div>
-                   </div>
-                   <hr class="m-hr">
-                   <div class="message-text">
-                     ${snapshot.val().message}
-                   </div>
-                 </div>
-               </li>
-
-    `+html;
-})
   </script>
    <!--Place for Scripts-->
   </body>
