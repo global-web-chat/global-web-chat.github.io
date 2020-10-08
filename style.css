@@ -1,0 +1,496 @@
+body{
+    overflow-x: hidden;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+}
+#profile{
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+}
+#chat{
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+#welcome{
+    width: 100vw;
+    height: 100vh;
+    display: none;  
+}
+#main{
+    display: none;
+    width: 100vw;
+    height: 100vh;
+}
+#header{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    background-color: royalblue;
+    color: white;
+    z-index: 1000;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+#head-avatar{
+    border-radius: 100%;
+    background-color: white;
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    left: 50px;
+    top: 5px;
+    cursor: pointer;
+}
+#head-avatar>.material-icons{
+    color: #4177F6;
+    font-size: 40px;
+   
+}
+#head-back-btn{
+    position: fixed;
+    left: 5px;
+    top: 8px;
+    cursor: pointer;
+    border-radius: 100%;
+}
+#head-back-btn>.material-icons{
+    font-size: 32px;
+    font-weight: 100;
+}
+#head-profile-container{
+    cursor: pointer;
+    border-radius: 5px;
+    position: fixed;
+    left: 43px;
+    top: 2px;
+    width: 180px;
+    height: 46px;
+}
+#p-photo{
+    color: #0062ff;
+    font-size: 200px;
+    cursor: default;
+}
+#head-username{
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    left: 100px;
+    top: 12px;
+}
+#head-username>h2{
+    margin: 0;
+    font-weight: 100;
+    font-size: 1.3em;
+}
+#menu-btn{
+    position: fixed;
+    right: 15px;
+    top: 8px;
+    cursor: pointer;
+    border-radius: 100%;
+    
+}
+#menu-btn:active,#head-back-btn:active,#head-profile-container:active{
+    background-color: rgba(0,0,0,.12);
+}
+#menu-btn>.material-icons{
+    font-size: 32px;
+    font-weight: 400;
+}
+#menu-box{
+    padding: 5px 0 5px 0;
+    border-radius: 3px;
+    position: absolute;
+    right: 7px;
+    top: 40px;
+    background-color: white;
+    display: none;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+#menu-box>ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.menu-item{
+   
+    height: 45px;
+   cursor: pointer;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    padding:3px 10px ;
+}
+.show{
+    display: block !important;
+}
+.menu-item:hover{
+    background-color: #eee;
+}
+h1,h2{
+    text-align: center;
+    font-weight: 300;
+}
+#main-head{
+padding-top: 20px;
+    font-weight: 300;
+}
+.f-head{
+    color: rgba(10,10,10);
+    transition:color 500ms;
+}
+#main-head:hover{
+    color: #4285f4;
+}
+#main-2-head:hover{
+    color: #34a853;
+}
+#main-3-head:hover{
+    color: #ea4335;
+}
+#sign-in-loader{
+    font-size: 2em;
+    text-align: center;
+}
+#profile-cover{
+    width: 100%;
+    position: absolute;
+    top: 50;
+    left: 0;
+    height: 150px;
+    
+    background: url(cover.svg);
+    background-color: #34a853;
+    background-size: contain;
+}
+#profile-photo{
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    border:5px solid #ea4335;
+    background-color: white;
+   
+}
+#profile-photo-container{
+    margin: auto;
+    width: 100%;
+  position: absolute;
+    top: 200px;
+    margin: auto;
+    width: 100%;
+   
+}
+
+#user-info{
+    width: 100%;
+   
+}
+a{
+    text-decoration: none;
+    color: #4285f4;
+}
+a:active{
+    color: #0062ff;
+}
+a:hover{
+    color: #34a853;
+}
+a:visited{
+    color: #ea4335;
+}
+#sign-out{
+    position: absolute;
+
+}
+#chat-input{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 60px;
+    background-color: #f0f0f0;
+    z-index: 100;
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+    box-shadow: 0 -1px 5px 0 rgba(0,0,0,.12);
+
+}
+#message-input-container{
+    width: 85%;
+    background-color: white;
+    padding: 10px 20px;
+    margin: 10px 10px 10px 30px;
+    border-radius: 40px;
+   
+}
+#message-input{
+outline: 0;
+margin: 0;
+padding: 0;
+border: 0;
+width: 100%;
+font-size: 17px;
+
+
+}
+#send-message{
+    width: 50px;
+    height: 50px;
+    border:0;
+    outline: 0;
+    border-radius: 100%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#send-message>.material-icons{
+    font-size: 34px;
+    color: #222;
+    outline: 0;
+    padding: 0 0 0 3px;
+}
+#send-container{
+   
+   width: 50px;
+   height: 50px;
+   margin: 5px 10px 5px 0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: 100%;
+   
+}
+#send-message:active{
+background-color: #ddd;
+}
+#chat-container{
+    width: 100%;
+    height: calc(100% - 110px);
+    position: fixed;
+    top: 50px;
+    left: 0;
+    overflow-y: auto;
+}
+#messages{
+    list-style-type: none;
+    padding: 10px;
+    
+}
+.message-username{
+    font-size: 1.2em;
+    display: inline-block;
+    margin: 0 10px 0 0;
+    transition:color 500ms;
+}
+.message-username:hover{
+    color: #4177F6;
+}
+.message-profile{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.message-username-container{
+    color: black;
+    display: inline-block;
+}
+.li{
+    padding: 0;
+    margin: 0;
+    height: auto;
+}
+.message-p-photo{
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    border-radius: 100%;
+    background-color: transparent;
+    
+    margin: 0 5px;
+}
+.message-p-photo>.material-icons{
+    color: black;
+    font-size: 25px;
+    cursor: default;
+    background-color: white;
+    border-radius: 100%;
+    
+}
+.message{
+    background-color: #eee;
+    border-radius: 10px;
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+}
+.m-hr{
+    color: #ea4335;
+    border-style: solid;
+    background-color: #ea4335;
+    border-radius: 5px;
+}
+.user-badges{
+    display: flex;
+    height: 20px;
+}
+.admin-badge{
+    font-size: 10px;
+    color: black;
+    border-radius: 100px;
+    width: 50px;
+    height: 20px;
+    background: linear-gradient(gold,orange);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+}
+.admin-badge>.material-icons{
+    font-size: 11px;
+    color: black;
+}
+.pro-badge{
+    font-size: 10px;
+    color: white;
+    border-radius: 100px;
+    width: 50px;
+    height: 20px;
+    background: linear-gradient(to right,rgb(70, 70, 70),rgb(100,100,100));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+}
+.pro-badge>.material-icons{
+    font-size: 11px;
+    color:white;
+    margin-right: 5px;
+}
+.message-text{
+    margin-left: 15px;
+    font-size: 1em;
+    transition:color 500ms;
+}
+.message-text:hover{
+    color: #ea4335;
+}
+#head-avatar-img{
+width: 40px;
+height: 40px;
+}
+#profile-photo-img{
+    width: 150px;
+    height: 150px;
+  
+}
+@media screen and (max-width: 580px){
+  
+    #main-head{
+        font-size: 1.8em;
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+    #main-2-head{
+        font-size: 1.3em;
+        padding-bottom: 100px;
+    }
+    #main-3-head{
+        font-size: 1.3em;
+        padding-bottom: 10px;
+    }
+    #profile-photo-container{
+        display: flex;
+        justify-content: center;
+        top: 100px;
+    }
+    #profile-photo{
+        width: 150px;
+        height: 150px;
+        border-radius: 100%;
+        border:5px solid #ea4335;
+    }
+    #profile-container{
+        width: 100%;  
+        position: absolute;
+        top: 260px;
+    }
+    #info-username{
+        font-size: 1.8em;
+    }
+    .user-info{
+        text-align: left;
+        margin-left: 20px;
+        font-size: 1.3em;
+    }
+    #sign-out{
+        left: 30px;
+        top: 210px;
+    }
+    #p-photo{
+        font-size: 150px;
+    }
+}
+@media screen and (min-width: 580px){
+    #main-2-head{
+        
+        padding-bottom: 60px;
+    }
+    #main-3-head{
+        padding-bottom: 10px;
+    }
+    #menu-btn{
+        right: 30px;
+    }
+    #profile-cover{
+        height: 50vh;
+    }
+    #profile-photo{
+        width: 200px;
+        height: 200px;
+        border-radius: 100%;
+        border:5px solid #ea4335;
+        position: absolute;
+        left: 50px;
+    }
+    #menu-box{
+        right: 25px;
+    }
+    #profile-container{
+        width: 100%;  
+        position: absolute;
+        top: 410px;
+    }
+    #info-username{
+        font-size: 2em;
+        text-align: left;
+        margin-left: 70px;
+    }
+   .user-info{
+    font-size: 1.5em;
+    font-weight: 500;
+    text-align: left;
+    margin-left: 70px;
+   }
+   #sign-out{
+    right: 100px;
+    top: -50px;
+}
+#send-container{
+    margin: 5px 10px 5px 30px;
+}
+#profile-photo-img{
+    width: 200px;
+    height: 200px;
+  
+}
+}
