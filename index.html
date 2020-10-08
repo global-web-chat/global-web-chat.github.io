@@ -454,7 +454,15 @@ document.getElementById("send-message").addEventListener("click",()=>{
      }
      
    });
-
+     
+unregisterSw(){
+	navigator.serviceWorker.getRegistrations().then(function(registrations) {
+ for(let registration of registrations) {
+  registration.unregister();
+   alert("service workers unregistered")
+} })
+		window.location.reload();
+	}
   </script>
    <!--Place for Scripts-->
   </body>
