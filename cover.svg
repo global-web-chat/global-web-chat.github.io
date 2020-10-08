@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1581px" height="483px" viewBox="0 0 1581 483" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    
+    <g id="user-pattern" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" fill-rule="nonzero" x="0.359911167" y="0" width="1580.64009" height="483"></rect>
+        <g id="symbols" transform="translate(31.957626, 28.766758)" fill-rule="nonzero" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="8">
+            <path d="M61.0501427,44.9225732 L51.283098,16.5570159 L61.0501427,44.9225732 L32.6845854,54.6896178 L61.0501427,44.9225732 Z M61.0501427,44.9225732 L89.4156999,35.1555285 L61.0501427,44.9225732 L70.8171873,73.2881304 L61.0501427,44.9225732 Z" id="Combined-Shape"></path>
+            <path d="M547.384345,27.169133 L573.365107,12.169133 L547.384345,27.169133 L532.384345,1.18837093 L547.384345,27.169133 Z M547.384345,27.169133 L562.384345,53.1498952 L547.384345,27.169133 L521.403583,42.169133 L547.384345,27.169133 Z" id="Combined-Shape"></path>
+            <path d="M1521.79237,73.7881304 L1491.79237,73.7881304 L1521.79237,73.7881304 L1521.79237,43.7881304 L1521.79237,73.7881304 Z M1521.79237,73.7881304 L1551.79237,73.7881304 L1521.79237,73.7881304 L1521.79237,103.78813 L1521.79237,73.7881304 Z" id="Combined-Shape"></path>
+            <polyline id="Path-4" transform="translate(322.897689, 105.103089) rotate(-46.000000) translate(-322.897689, -105.103089) " points="300.397689 127.603089 345.397689 127.603089 345.397689 82.6030893"></polyline>
+            <polyline id="Path-4-Copy" transform="translate(25.500000, 404.729775) rotate(-83.000000) translate(-25.500000, -404.729775) " points="3 427.229775 48 427.229775 48 382.229775"></polyline>
+            <polyline id="Path-4-Copy-2" transform="translate(1059.542374, 157.233242) rotate(30.000000) translate(-1059.542374, -157.233242) " points="1037.04237 179.733242 1082.04237 179.733242 1082.04237 134.733242"></polyline>
+            <polyline id="Path-4-Copy-3" transform="translate(1472.653963, 355.580653) rotate(104.000000) translate(-1472.653963, -355.580653) " points="1450.15396 378.080653 1495.15396 378.080653 1495.15396 333.080653"></polyline>
+            <rect id="Rectangle" x="529.365107" y="305.614143" width="44" height="44"></rect>
+            <rect id="Rectangle-Copy" transform="translate(914.630852, 42.194385) rotate(47.000000) translate(-914.630852, -42.194385) " x="892.630852" y="20.1943851" width="44" height="44"></rect>
+            <rect id="Rectangle-Copy-2" transform="translate(1205.042374, 380.155214) rotate(-34.000000) translate(-1205.042374, -380.155214) " x="1183.04237" y="358.155214" width="44" height="44"></rect>
+            <polyline id="Path-5-Copy" transform="translate(165.113418, 226.635382) rotate(35.000000) translate(-165.113418, -226.635382) " points="121.042374 246.135382 150.696225 207.135382 182.89952 246.135382 209.184462 207.135382"></polyline>
+            <polyline id="Path-5-Copy-2" transform="translate(915.716670, 417.155005) rotate(-17.000000) translate(-915.716670, -417.155005) " points="871.645626 436.655005 901.299476 397.655005 933.502772 436.655005 959.787714 397.655005"></polyline>
+            <polyline id="Path-5-Copy-3" transform="translate(1260.309003, 73.288130) rotate(83.000000) translate(-1260.309003, -73.288130) " points="1216.23796 92.7881304 1245.89181 53.7881304 1278.09511 92.7881304 1304.38005 53.7881304"></polyline>
+            <path d="M704.042374,127.977441 L704.042374,187.977441" id="Path-2-Copy-2" transform="translate(704.042374, 157.977441) rotate(-24.000000) translate(-704.042374, -157.977441) "></path>
+            <path d="M1362.04237,205.940029 L1362.04237,265.940029" id="Path-2-Copy-3" transform="translate(1362.042374, 235.940029) rotate(35.000000) translate(-1362.042374, -235.940029) "></path>
+            <path d="M305.135064,350.155214 L305.135064,410.155214" id="Path-2-Copy-4" transform="translate(305.135064, 380.155214) rotate(35.000000) translate(-305.135064, -380.155214) "></path>
+            <polyline id="Path-4" transform="translate(806.542374, 283.014590) rotate(9.000000) translate(-806.542374, -283.014590) " points="784.042374 305.51459 829.042374 305.51459 829.042374 260.51459"></polyline>
+        </g>
+    </g>
+</svg>

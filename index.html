@@ -1,0 +1,507 @@
+<html>
+  <head>
+    <!--Manifest File-->
+    <link rel="manifest" href="app.webmanifest">
+    <!--Meta Viewpoint-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <!-- Shortcut Icon-->
+    <link rel="shortcut icon" type="image/x-icon" href="global-web-chat.png">
+    <!--Shortcut Icon-->
+    <link rel="icon" type="image/x-icon" href="global-web-chat.png">
+    <!--Theme Color-->
+    <meta name="theme-color" content="#000">
+    <!--Author's Name-->
+    <meta name="author" content="arnav kumar">
+    <!--Keywords For Search Engines-->
+    <meta name="keywords" content="chat,whatsapp,facebook,messenger,chat-app,firebase,google,twitter,instagram,global-web-chat,global web chat,Global Web Chat,Web chat, web,chatting,users,email,password,name,india,app,free,secure,best,no1,number 1,">
+    <!--Description-->
+    <meta name="description" content="A place where People all over the World meet each other. Chat to whole World Anytime Anywhere.">
+    <!--Encoding-->
+    <meta charset="UTF-8">
+    <!--Including Script.js-->
+    <script src="script.js"></script>
+    <!--Including Style.css-->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!--Including Material Icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Including Custom Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!--Adding Fonts to Body-->
+    <!--Adding Title of Web Page-->
+    <title>Global Web Chat</title>
+    <!--Head End-->
+  </head>
+  <!--Body Starts-->
+  <body>
+<!--Body Content Start-->
+<!--Login Page start-->
+<div id="welcome">
+    <h1 class="f-head" id="main-head">Welcome to Global Web Chat!</h1>
+    <h2 class="f-head" id="main-2-head">A place where People all over the World meet each other.</h2>
+    <h2 class="f-head" id="main-3-head">Login or Signup to Continue.</h2>
+        
+         <div id="sign-in-loader">loading...</div>
+         <div id="firebaseui-auth-container"></div>
+        </div>
+         <!--Login Page End-->
+         <!--Making Main Container-->
+         <div id="main">
+         <!--Header Start-->
+          <div id="header">
+            
+            <div id="head-back-btn">
+            <span class="material-icons">arrow_back</span>
+            </div>
+            <div id="head-profile-container">
+              <div id="head-avatar">
+                
+              </div>
+              <div id="head-username">
+                  <h2 id="head-user-name">Username</h2>
+              </div>
+            </div>
+              <div id="menu-btn">
+                <span class="material-icons">
+                  more_vert
+                </span>
+              </div>
+                <div id="menu-box">
+                  <ul>
+                    <li class="menu-item" id="menu-profile-btn">My Profile</li>
+                    <li class="menu-item" onclick="window.location.assign('contact-us/index.html')">Contact Us</li>
+                    <li class="menu-item" onclick="window.location.assign('about-us/index.html')">About Us</li>
+                  </ul>
+                </div>
+
+            </div>
+         <!--Header End-->
+         <!--Chat Page Start-->
+         <div id="chat">
+           <div id="chat-container">
+             <ul id="messages">
+
+             </ul>
+           </div>
+<div id="chat-input">
+  <div id="message-input-container">
+  <input type="text" id="message-input" placeholder="Type a message">
+</div>
+<div id="send-container"><button id="send-message"><span class="material-icons">send</span></button></div>
+</div>
+
+
+         </div>
+         <!--Chat Page End-->
+        <!--Profile Page Start-->
+        <div id="profile">
+          <div id="profile-cover"></div>
+            <div id="profile-photo-container">
+            <div id="profile-photo"></div>
+            </div>
+            <div id="profile-container">
+            <div id="user-info">
+              <h1 id="info-username">username</h1>
+              <h1 class="user-info"><span style="color: #ea4335;">Email: </span><span id="user-info-email"></span></h1>
+              <h1 class="user-info"><span style="color: #ea4335;">phone Number: </span><span id="user-info-phone"></span></h1>
+              <button id="sign-out" class="firebaseui-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Sign Out</button>
+            </div>
+          </div>
+        </div>
+        <!--Profile Page Start-->
+        </div>
+        <!--Main Container End-->
+    <!--Body Content End-->
+    
+   <!--Place For the scripts-->
+    <!--Including scripts for firebase-->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
+<script>
+//defining user variables
+var user,credential,isNewUser,providerId,operationType,displayName,email,emailVerified,photoURL,phoneNumber,providerData,currentPage;
+var pages=["welcome","profile","chat","main"];
+var pagesLog = [];
+var proUsers = ["NBgQstpBLYMAGuZvset6WVB5cOo1","FaHMsLceIqhdpjVPTNg1iXHc0tK2"];
+var admins = ["NBgQstpBLYMAGuZvset6WVB5cOo1"];
+var selected = ["NBgQstpBLYMAGuZvset6WVB5cOo1"];
+function setCurrentPage(number){
+  
+  if(number==1 || number==2){
+    document.getElementById(pages[3]).style.display="block"
+    if(number==1 && !(currentPage==1)){
+document.getElementById(pages[1]).style.display="block"
+document.getElementById(pages[0]).style.display="none"
+document.getElementById(pages[2]).style.display="none"
+currentPage=1;
+pagesLog.push(1);
+  }
+  if(number==2 && !(currentPage==2)){
+document.getElementById(pages[2]).style.display="block"
+document.getElementById(pages[0]).style.display="none"
+document.getElementById(pages[1]).style.display="none"
+currentPage=2;
+pagesLog.push(2);
+  }
+ 
+}
+if(number==0 && !(currentPage==0)){
+document.getElementById(pages[0]).style.display="block"
+document.getElementById(pages[1]).style.display="none"
+document.getElementById(pages[2]).style.display="none"
+document.getElementById(pages[3]).style.display="none"
+   }
+   
+}
+
+function back(){
+     if(currentPage==1){
+       setCurrentPage(2);
+     }
+}
+
+document.getElementById("head-back-btn").addEventListener("click",()=>{
+            back();
+});
+document.getElementById("menu-profile-btn").addEventListener("click",()=>{
+          setCurrentPage(1);
+          document.getElementById("menu-box").classList.remove("show");
+});
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyBAVMLfjA5dH_z19_rz4k9g4Gxvp1QMzcM",
+    authDomain: "global-web-chat.firebaseapp.com",
+    databaseURL: "https://global-web-chat.firebaseio.com",
+    projectId: "global-web-chat",
+    storageBucket: "global-web-chat.appspot.com",
+    messagingSenderId: "320560454840",
+    appId: "1:320560454840:web:6c321f96c3004882d5284d",
+    measurementId: "G-55K1GY9TN6"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  var db=firebase.database();
+
+  function convertHTML(str) {
+  let regex = /[&|<|>|"|'|/|\\|(|)|{|}|;|:|$|+|=|-|!|*|%|#|@|?|`]/g;
+  let htmlString = str.replace(regex, function(match){
+    if(match === "&"){
+      return "&amp;";
+    }else if(match === "<"){
+      return "&lt;"
+    }else if(match === ">"){
+      return "&gt;";
+    }else if(match === '"'){
+      return "&quot;";
+    }
+    else if(match === "'"){
+      return "&#39;";
+    }
+    else if(match === '/'){
+      return "&#47;";
+    }
+    else if(match === '\\'){
+      return "&#92;";
+    }
+    else if(match === '('){
+      return "&#40;";
+    }
+    else if(match === ')'){
+      return "&#41;";
+    }
+    else if(match === '{'){
+      return "&#123;";
+    }
+    else if(match === '}'){
+      return "&#125;";
+    }
+    else if(match === ';'){
+      return "&#59;";
+    }
+    else if(match === ':'){
+      return "&#58;";
+    }
+    else if(match === '$'){
+      return "&#36;";
+    }
+    else if(match === '+'){
+      return "&#43;";
+    }
+    else if(match === '='){
+      return "&#61;";
+    }
+    else if(match === '-'){
+      return "&#45;";
+    }
+    else if(match === '!'){
+      return "&#33;";
+    }
+    else if(match === '*'){
+      return "&#42;";
+    }
+    else if(match === '%'){
+      return "&#37;";
+    }
+    else if(match === '#'){
+      return "&#35;";
+    }
+    else if(match === '@'){
+      return "&#64;";
+    }
+    else if(match === '?'){
+      return "&#63;";
+    }
+    else if(match === '`'){
+      return "&#96;";
+    }
+    else{
+    }
+    
+  });
+      
+  return htmlString;
+}
+  function sendMessage(){
+    var message=document.getElementById("message-input");
+    var messageText= message.value;
+    if (messageText.length > 1024){
+        messageText = messageText.slice(0, 1024)
+    }
+    messageText = convertHTML(messageText);
+    if(!(proUsers.includes(uid)) && !(admins.includes(uid))){
+    if(message.value.length>0){
+   sendDB(messageText,false,false,null);
+   document.getElementById("message-input").value="";
+    }
+    else{
+      alert("Please write a message before sending");
+    }
+
+    }
+    if(proUsers.includes(uid) && !(admins.includes(uid))){
+    if(message.value.length>0){
+   sendDB(messageText,true,false,null);
+   document.getElementById("message-input").value="";
+    }
+    else{
+      alert("Please write a message before sending");
+    }
+
+    }
+    if(proUsers.includes(uid) && admins.includes(uid)){
+    if(message.value.length>0){
+      if(selected.includes(uid)){
+        sendDB(messageText,true,true,"https://arnav5544.github.io/arnav.png");
+      }
+      else{
+   sendDB(messageText,true,true,null);
+      }
+   document.getElementById("message-input").value="";
+    }
+    else{
+      alert("Please write a message before sending");
+    }
+
+    }
+   }
+document.getElementById("send-message").addEventListener("click",()=>{
+  sendMessage();
+})
+</script>
+<script type="text/javascript">
+    // FirebaseUI config.
+    var uiConfig = {
+        signInSuccessUrl:false,
+        signInFlow: 'popup',
+      signInOptions: [
+        // Leave the lines as is for the providers you want to offer your users.
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID,
+        
+      ],
+      
+      // tosUrl and privacyPolicyUrl accept either url string or a callback
+      // function.
+      // Terms of service url/callback.
+      tosUrl: 'terms-of-services/index.html',
+      // Privacy policy url/callback.
+      privacyPolicyUrl: function() {
+        window.location.assign('privacy-policies/index.html');
+      },
+      callbacks:{
+      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+            user = authResult.user;
+            credential = authResult.credential;
+            isNewUser = authResult.additionalUserInfo.isNewUser;
+            providerId = authResult.additionalUserInfo.providerId;
+            operationType = authResult.operationType;
+            // Do something with the returned AuthResult.
+            // Return type determines whether we continue the redirect automatically
+            // or whether we leave that to developer to handle.
+            setCurrentPage(2);
+            
+            return false;},
+
+        signInFailure: function(error) {
+            // Some unrecoverable error occurred during sign-in.
+            // Return a promise when error handling is completed and FirebaseUI
+            // will reset, clearing any UI. This commonly occurs for error code
+            // 'firebaseui/anonymous-upgrade-merge-conflict' when merge conflict
+            // occurs. Check below for more details on this.
+            return handleUIError(error);
+          },
+        uiShown: function() {
+            // The widget is rendered.
+            // Hide the loader.
+            document.getElementById('sign-in-loader').style.display = 'none';
+          }
+      }
+    };
+
+    // Initialize the FirebaseUI Widget using Firebase.
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    // The start method will wait until the DOM is loaded.
+    var auth=firebase.auth();
+  </script>
+   <script type="text/javascript">
+    initApp = function() {
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          setCurrentPage(2);
+          // User is signed in.
+          
+          displayName = user.displayName;
+          email = user.email;
+          emailVerified = user.emailVerified;
+          photoURL = user.photoURL;
+          uid = user.uid;
+          phoneNumber = user.phoneNumber;
+          providerData = user.providerData;
+          user.getIdToken().then(function(accessToken) {
+           //user is signed in
+           
+   if(selected.includes(uid)){
+      document.getElementById("head-avatar").innerHTML=`<img src="https://arnav5544.github.io/arnav.png" id="head-avatar-img">`;
+      document.getElementById("profile-photo").innerHTML=`<img src="https://arnav5544.github.io/arnav.png" id="profile-photo-img">`;
+    }
+    else{
+      document.getElementById("head-avatar").innerHTML=`<span class="material-icons" id="head-p-photo">person</span>`;
+      document.getElementById("profile-photo").innerHTML=`<span class="material-icons" id="p-photo">person</span>`;
+    }
+
+            document.getElementById("head-user-name").textContent=displayName;
+            document.getElementById("info-username").textContent=displayName;
+            document.getElementById("user-info-email").innerHTML=`<a href="mailto:${email}">${email}</a>`;
+            document.getElementById("user-info-phone").innerHTML=`<a href="tel:${phoneNumber}">${phoneNumber}</a>`;
+            document.getElementById("head-profile-container").addEventListener("click",()=>{
+                setCurrentPage(1); });
+            
+          });
+          document.getElementById('sign-out').style.display="block"
+            document.getElementById('sign-out').addEventListener("click",()=>{
+                        auth.signOut();
+                        document.getElementById('sign-out').style.display="none";
+                      });
+
+        } else {
+          // User is signed out.
+
+          ui.start('#firebaseui-auth-container', uiConfig);
+          setCurrentPage(0);
+        }
+      }, function(error) {
+        console.log(error);
+      });
+    };
+
+    window.addEventListener('load', function() {
+      initApp();
+    });
+        function sendDB(message,isPro,isAdmin,photo){
+  db.ref("messages").push().set({
+            "sender":displayName,
+            "message":message,
+            "pro":isPro,
+            "admin":isAdmin,
+            "p_photo":photo
+        })
+}
+//dropdown menu function
+    document.getElementById("menu-btn").addEventListener("click",()=>{
+      document.getElementById("menu-box").classList.toggle("show");
+    });
+   
+   //writing enter on submit
+   document.getElementById("message-input").addEventListener("keydown", event =>{
+     if(event.key=="Enter" || event.code=="Enter"){
+     document.getElementById("send-message").click();
+     document.getElementById("message-input").value="";
+     }
+     
+   });
+
+  //getting messages
+  function adminChecker(bool){
+    if(bool==true){
+      return `<div class="admin-badge"><span class="material-icons">local_police</span>Admin</div>`;
+    }
+    else{
+      return ``;
+    }
+  }
+  function proChecker(bool){
+    if(bool==true){
+      return `<div class="pro-badge"><span class="material-icons">verified_user</span>Pro</div>`;
+    }
+    else return ``;
+  }
+  function avatar(photo){
+    if(photo!=null){
+      return `<img src="${photo}" width="25px" height="25px" style="border-radius:100%;">`;
+    }
+    else{
+      return `<span class="material-icons">person</span>`;
+    }
+  }
+  firebase.database().ref("messages").on("child_added", (snapshot) => {
+    let html = document.querySelector("#messages").innerHTML;
+    
+    document.getElementById("messages").innerHTML = `
+    
+    <li class="li">
+                 <div class="message">
+                   <div class="message-profile">
+                     <div class="message-p-photo">${avatar(snapshot.val().p_photo,)}</div>
+                     <div class="message-username-container">
+                        <h1 class="message-username">${snapshot.val().sender}</h1>
+                     </div>
+                     <div class="user-badges">
+                      ${adminChecker(snapshot.val().admin)}
+                     ${proChecker(snapshot.val().pro)}
+                     </div>
+                   </div>
+                   <hr class="m-hr">
+                   <div class="message-text">
+                     ${snapshot.val().message}
+                   </div>
+                 </div>
+               </li>
+
+    `+html;
+})
+  </script>
+   <!--Place for Scripts-->
+  </body>
+  <!--Body End-->
+</html>
