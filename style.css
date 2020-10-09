@@ -210,6 +210,46 @@ a:visited{
     position: absolute;
 
 }
+#dialog-container{
+    background-color: rgba(0,0,0,.2);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.dialog{
+padding:20px;
+border-radius: 10px;
+box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+background-color: white;
+border: 2px solid #ea4335;
+}
+#editName{
+    border-radius: 100%;
+    padding: 5px;
+    cursor: pointer;
+    color: black;
+}
+#editName:hover{
+    color: royalblue;
+}
+.dialog>form>#new-username{
+    border-radius: 3px 3px 0 0 ;
+    border-width: 0 0 3px 0;
+    border-style: solid;
+    border-color: black;
+    outline: 0;
+    font-size: 1.2em;
+    padding: 3px;
+}
+.dialog>form>#new-username:focus{
+    border-color: #0062ff;
+}
 #chat-input{
     width: 100%;
     position: fixed;
@@ -223,6 +263,41 @@ a:visited{
     flex-direction: row;
     box-shadow: 0 -1px 5px 0 rgba(0,0,0,.12);
 
+}
+.dialog>form>#new-name-done-btn{
+    padding: 5px 10px;
+    font-size: 1.2em;
+    border-radius: 3px;
+    background-color: royalblue;
+    color: white;
+    border: 0;
+    display: inline-block;
+    margin: 10px;
+    cursor: pointer;
+}
+#editName:active{
+    background-color: #eee;
+}
+#closeDialog{
+outline: 0;
+border: 0;
+padding: 3px;
+right: 0;
+top: 0;
+margin: 5px 5px 0 0;
+background-color: transparent;
+border-radius: 100%;
+cursor: pointer;
+}
+#closeDialog:active{
+    background-color: #eee;
+}
+#closeDialog>.material-icons{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.dialog>form>#new-name-done-btn:active{
+    transform: scale(.95);
 }
 #message-input-container{
     width: 85%;
