@@ -1,6 +1,6 @@
 <html>
   <head>
-<script data-ad-client="ca-pub-6290792326682212" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	  <script data-ad-client="ca-pub-6290792326682212" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	  <meta name="google-site-verification" content="JZkQhSsdAwJ1WYUp-7mW-8s_8FKzaYYxXBuOvmILEvE" />
     <!--Manifest File-->
     <link rel="manifest" href="app.webmanifest">
@@ -35,6 +35,17 @@
   </head>
   <!--Body Starts-->
   <body>
+    <div id="dialog-container">
+      <div class="dialog" id="name_reset">
+        <div style="text-align: right;">
+        <button id="closeDialog" onclick="closeDialog()"><span class="material-icons">close</span></button>
+        </div>
+        <form onsubmit="change_username(event)">
+          <input type="text" name="username" id="new-username" placeholder="Enter Your New Name...">
+          <input type="submit" value="Done" id="new-name-done-btn">
+        </form>
+      </div>
+    </div>
 <!--Body Content Start-->
 <!--Login Page start-->
 <div id="welcome">
@@ -59,7 +70,7 @@
                 
               </div>
               <div id="head-username">
-                  <h2 id="head-user-name">Username</h2>
+                  <h2 id="head-user-name"></h2>
               </div>
             </div>
               <div id="menu-btn">
@@ -70,10 +81,10 @@
                 <div id="menu-box">
                   <ul>
                     <li class="menu-item" id="menu-profile-btn">My Profile</li>
-		    <li class="menu-item" onclick="unregisterSw()"><span class="material-icons">sync</span>Sync App</li>
+                    <li class="menu-item" onclick="unregisterSw()"><span class="material-icons">sync</span>Sync App</li>
                     <li class="menu-item" onclick="window.location.assign('contact-us/index.html')">Contact Us</li>
                     <li class="menu-item" onclick="window.location.assign('about-us/index.html')">About Us</li>
-		    <li class="menu-item install-btn"><span class="material-icons">get_app</span>Install</li>
+                    <li class="menu-item install-btn"><span class="material-icons">get_app</span>Install</li>
                   </ul>
                 </div>
 
@@ -104,7 +115,7 @@
             </div>
             <div id="profile-container">
             <div id="user-info">
-              <h1 id="info-username">username</h1>
+              <h1 id="info-username"></h1>
               <h1 class="user-info"><span style="color: #ea4335;">Email: </span><span id="user-info-email"></span></h1>
               <h1 class="user-info"><span style="color: #ea4335;">phone Number: </span><span id="user-info-phone"></span></h1>
               <button id="sign-out" class="firebaseui-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Sign Out</button>
@@ -114,6 +125,7 @@
         <!--Profile Page Start-->
         </div>
         <!--Main Container End-->
+        
     <!--Body Content End-->
     
    <!--Place For the scripts-->
@@ -237,7 +249,38 @@ document.getElementById("menu-profile-btn").addEventListener("click",()=>{
     `+html;
 })
 
+function change_username(e){
+  e.preventDefault();
+  var new_name = document.getElementById("new-username").value;
+  if(new_name==null  || new_name=="" || new_name=="undefined"){
+    alert("Please Fill a Name");
+  }
+  else{
+    var user = firebase.auth().currentUser;
+user.updateProfile({
+  displayName: new_name
+}).then(function() {
+  displayName =firebase.auth().currentUser.displayName;
+  alert("Update successful.");
+  document.getElementById("head-user-name").innerHTML=displayName;
+            document.getElementById("info-username").innerHTML=displayName+`<span class="material-icons" id="editName" onclick="toggle_change_username_box()">edit</span>`;
+}).catch(function(error) {
+  alert("An error happened.");
+  console.log(error)
+});
+document.getElementById("dialog-container").style.display="none";
+document.getElementById("new-username").value="";
 
+  }
+}
+
+function closeDialog(){
+  document.getElementById("dialog-container").style.display="none";
+document.getElementById("new-username").value="";
+}
+function toggle_change_username_box(){
+  document.getElementById("dialog-container").style.display="flex";
+}
 function s(text){
   return decodeURI(atob(text));
 }
@@ -328,7 +371,6 @@ document.getElementById("send-message").addEventListener("click",()=>{
 <script type="text/javascript">
     // FirebaseUI config.
     var uiConfig = {
-	autoUpgradeAnonymousUsers: true,
         signInSuccessUrl:false,
         signInFlow: 'popup',
       signInOptions: [
@@ -336,6 +378,7 @@ document.getElementById("send-message").addEventListener("click",()=>{
         firebase.auth.EmailAuthProvider.PROVIDER_ID,
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
         firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+        
         
       ],
       
@@ -390,8 +433,17 @@ document.getElementById("send-message").addEventListener("click",()=>{
           // User is signed in.
           
           displayName = user.displayName;
-		if(user.displayName==null){
-			displayName="Anonymous";
+          if(user.displayName==null){
+            var user = firebase.auth().currentUser;
+user.updateProfile({
+  displayName: "Anonymous"
+}).then(function() {
+  console.log("Update successful.");
+ displayName=firebase.auth().currentUser.displayName;
+}).catch(function(error) {
+  console.log("An error happened.");
+  console.log(error)
+});
 		}
           email = user.email;
           emailVerified = user.emailVerified;
@@ -399,9 +451,19 @@ document.getElementById("send-message").addEventListener("click",()=>{
           uid = user.uid;
           phoneNumber = user.phoneNumber;
           providerData = user.providerData;
+
           user.getIdToken().then(function(accessToken) {
            //user is signed in
            
+          document.getElementById("head-user-name").innerHTML=displayName;
+            document.getElementById("info-username").innerHTML=displayName+`<span class="material-icons" id="editName" onclick="toggle_change_username_box()">edit</span>`;
+            document.getElementById("user-info-email").innerHTML=`<a href="mailto:${email}">${email}</a>`;
+            document.getElementById("user-info-phone").innerHTML=`<a href="tel:${phoneNumber}">${phoneNumber}</a>`;
+            document.getElementById("head-profile-container").addEventListener("click",()=>{
+                setCurrentPage(1); });
+            
+
+
    if(selected.includes(uid)){
       document.getElementById("head-avatar").innerHTML=`<img src="https://arnav5544.github.io/arnav.png" id="head-avatar-img">`;
       document.getElementById("profile-photo").innerHTML=`<img src="https://arnav5544.github.io/arnav.png" id="profile-photo-img">`;
@@ -411,13 +473,7 @@ document.getElementById("send-message").addEventListener("click",()=>{
       document.getElementById("profile-photo").innerHTML=`<span class="material-icons" id="p-photo">person</span>`;
     }
 
-            document.getElementById("head-user-name").textContent=displayName;
-            document.getElementById("info-username").textContent=displayName;
-            document.getElementById("user-info-email").innerHTML=`<a href="mailto:${email}">${email}</a>`;
-            document.getElementById("user-info-phone").innerHTML=`<a href="tel:${phoneNumber}">${phoneNumber}</a>`;
-            document.getElementById("head-profile-container").addEventListener("click",()=>{
-                setCurrentPage(1); });
-            
+           
           });
           document.getElementById('sign-out').style.display="block"
             document.getElementById('sign-out').addEventListener("click",()=>{
@@ -445,7 +501,7 @@ document.getElementById("send-message").addEventListener("click",()=>{
             "message":message,
             "pro":isPro,
             "admin":isAdmin,
-            "p_photo":photo,
+           "p_photo":photo,
 	    "uid":uid
         })
 }
@@ -462,18 +518,20 @@ document.getElementById("send-message").addEventListener("click",()=>{
      }
      
    });
-     
-function unregisterSw(){
+
+    
+  function unregisterSw(){
 	navigator.serviceWorker.getRegistrations().then(function(registrations) {
  for(let registration of registrations) {
   registration.unregister();
-   alert("App Sync successful")
+
+    alert("App Sync successful")
 } })
 		window.location.reload();
 	}
-	   
-	   
-	  // Code to handle install prompt on desktop
+
+
+// Code to handle install prompt on desktop
 let deferredPrompt; const addBtn = document.querySelector('.install-btn');
 addBtn.style.display = 'none';
    window.addEventListener('beforeinstallprompt', (e) => { 
@@ -491,10 +549,7 @@ addBtn.style.display = 'none';
        deferredPrompt.userChoice.then((choiceResult) => { if (choiceResult.outcome === 'accepted') { console.log('User accepted the A2HS prompt'); } else { console.log('User dismissed the A2HS prompt'); } deferredPrompt = null; }); }); });
 
 	   
-		    
-	   
-	   
-	   
+		   
   </script>
    <!--Place for Scripts-->
   </body>
