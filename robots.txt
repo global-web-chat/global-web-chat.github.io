@@ -1,0 +1,3 @@
+Sitemap: http://global-web-chat.github.io/sitemap.xml
+
+ 
