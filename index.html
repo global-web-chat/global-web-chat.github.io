@@ -225,6 +225,10 @@ document.getElementById("menu-profile-btn").addEventListener("click",()=>{
   firebase.database().ref("messages").on("child_added", (snapshot) => {
     let html = document.querySelector("#messages").innerHTML;
     
+    //--------The below lines modified by Steve
+    converted = convertHTML(snapshot.val().message);
+    //-------- Modification by Steve, ends here, I have also made changes to line 248 to match variables
+
     document.getElementById("messages").innerHTML = `
     
     <li class="li">
@@ -241,7 +245,7 @@ document.getElementById("menu-profile-btn").addEventListener("click",()=>{
                    </div>
                    <hr class="m-hr">
                    <div class="message-text">
-                     ${snapshot.val().message}
+                     ${converted}
                    </div>
                  </div>
                </li>
